@@ -33,8 +33,7 @@ pipeline {
         
         stage("Sonarqube Analysis "){
             steps{
-                def scannerHome = tool 'sonarqube-devops'
-                withSonarQubeEnv() {
+                withSonarQubeEnv('sonarqube-devops') {
                     sh "${scannerHome}/bin/sonar-scanner --version"
                     sh "mvn package"
                     sh ''' $SCANNER_HOME=/bin/sonar-scanner -Dsonar.url=http://10.20.40.45:9000/ -Dsonarlogin=squ_84d260c50255d9dff18114aaaf0a7638cbc96fab -Dsonar.projectName=node-dockerized-projects \
