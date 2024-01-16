@@ -14,20 +14,21 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage("Test"){
+    }
+    
+        
+        stage("Compile"){
             steps{
-                sh 'sudo apt install npm -y'
-                sh 'npm test'
+                sh "mvn clean compile"
             }
         }
-
-        stage("Build NPM"){
+        
+         stage("Test Cases"){
             steps{
-                sh 'npm run build'
+                sh "mvn test"
             }
         }
-
+        
         stage('SAST SCAN BY SONARQUBE') {
             steps{
                 withSonarQubeEnv('sonarqube-devops') {
@@ -44,6 +45,13 @@ pipeline {
                 snykSecurity organisation: 'devopsgol', projectName: 'synk-apps-to-html-devopsgol', severity: 'medium', snykInstallation: 'synk-devopsgol', snykTokenId: 'snyk_token', targetFile: 'package.json'
         }
         }
+        
+         stage("Build"){
+            steps{
+                sh " mvn clean install"
+            }
+        }
+        
         stage("Build Image"){
             steps{
                 sh 'sudo docker build -t my-node-app:latest .'
@@ -66,5 +74,3 @@ pipeline {
       }
     }
 }    
-}
-
