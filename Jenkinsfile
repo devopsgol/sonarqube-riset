@@ -36,7 +36,7 @@ pipeline {
             steps{
                 withSonarQubeEnv('sonarqube-devops') {
                     sh "mvn package"
-                    sh ''' mvn clean verify sonar:sonar -Dsonar.projectKey=riset-sonar-devopsgol -Dsonar.projectName='riset-sonar-devopsgol' -Dsonar.host.url=http://10.20.40.45:9010 -Dsonar.token=sqp_82ffb5654d1e001f3677d4a83f95a101040d5fed \
+                    sh ''' mvn clean verify sonar:sonar -Dsonar.projectKey=spring-framework-petclinic -Dsonar.projectName='spring-framework-petclinic' -Dsonar.host.url=http://10.20.40.45:9010 -Dsonar.token=sqp_ab06d94baeebff2101e5c7a71945e12d7a32a6e2 \
                     -Dsonar.java.binaries=. \
                     -Dsonar.projectKey=node-dockerized-projects '''
                 }
