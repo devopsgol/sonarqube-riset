@@ -36,7 +36,7 @@ pipeline {
             steps{
                 withSonarQubeEnv('sonarqube-devops') {
                     sh "mvn package"
-                    sh ''' mvn sonar:sonar -Dsonar.url=http://10.20.40.45:9010/ -Dsonarlogin=squ_84d260c50255d9dff18114aaaf0a7638cbc96fab -Dsonar.projectName=node-dockerized-projects \
+                    sh ''' mvn clean verify sonar:sonar -Dsonar.projectKey=riset-sonar-devopsgol -Dsonar.projectName='riset-sonar-devopsgol' -Dsonar.host.url=http://10.20.40.45:9010 -Dsonar.token=sqp_82ffb5654d1e001f3677d4a83f95a101040d5fed \
                     -Dsonar.java.binaries=. \
                     -Dsonar.projectKey=node-dockerized-projects '''
                 }
