@@ -8,6 +8,10 @@ pipeline {
           maven 'maven3'
     }
 
+    environment {
+        SCANNER_HOME=tool 'sonarqube-devops'
+    }
+
     stages {
         
         stage("Git Checkout"){
